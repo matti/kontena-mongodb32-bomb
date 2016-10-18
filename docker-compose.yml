@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  kontena-master:
+    image: kontena/server:0.15.5
+    environment:
+      - VAULT_KEY=asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf
+      - VAULT_IV=kljhkljhkljhkljhkljhkljhkljhkljhkljhkljhkljhkljhkljhkljhkljhkljh
+
+      - RACK_ENV=production
+      - MONGODB_URI=mongodb://mongodb-pannu/kontena_master
+
+      - ACME_ENDPOINT=https://acme-v01.api.letsencrypt.org/
+    depends_on:
+      - mongodb-pannu
+
+  mongodb-pannu:
+    image: mongo:3.2
+    command: --smallfiles
